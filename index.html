@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>제7강 한 영혼을 품는 목자 · 복습</title>
+<style>
+:root{
+  --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff; --text:#1d1d1f; --sub:#6e6e73; --line:rgba(0,0,0,.08);
+  --blue:#0071e3; --blue-soft:rgba(0,113,227,.10); --green:#34c759; --red:#ff3b30; --orange:#ff9f0a; --purple:#af52de;
+  --shadow:0 4px 24px rgba(0,0,0,.06); --shadow-lg:0 12px 40px rgba(0,0,0,.10);
+  --nav:rgba(251,251,253,.72);
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --bg2:#111113; --card:#1c1c1e; --text:#f5f5f7; --sub:#98989d; --line:rgba(255,255,255,.12);
+    --blue:#2997ff; --blue-soft:rgba(41,151,255,.16);
+    --shadow:0 4px 24px rgba(0,0,0,.4); --shadow-lg:0 12px 40px rgba(0,0,0,.6);
+    --nav:rgba(0,0,0,.66);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.65;letter-spacing:-.011em;-webkit-font-smoothing:antialiased;word-break:keep-all}
+button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
+.wrap{max-width:980px;margin:0 auto;padding:0 22px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:var(--nav);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:20px;height:48px;overflow-x:auto;scrollbar-width:none}
+nav .wrap::-webkit-scrollbar{display:none}
+nav b{font-size:14px;font-weight:600;white-space:nowrap}
+nav a{font-size:12px;color:var(--sub);text-decoration:none;white-space:nowrap;transition:color .2s}
+nav a:hover,nav a.on{color:var(--text)}
+#bar{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--blue);transition:width .1s}
+
+/* hero */
+.hero{text-align:center;padding:96px 0 80px}
+.eyebrow{color:var(--blue);font-weight:600;font-size:17px;margin-bottom:8px}
+.hero h1{font-size:clamp(38px,8vw,72px);font-weight:700;letter-spacing:-.03em;line-height:1.1}
+.hero h1 span{background:linear-gradient(90deg,#0071e3,#af52de 60%,#ff9f0a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{color:var(--sub);font-size:clamp(17px,2.6vw,24px);margin:22px auto 0;max-width:640px}
+.meta{color:var(--sub);font-size:14px;margin-top:14px}
+.pill{display:inline-block;margin-top:34px;background:var(--blue);color:#fff;padding:12px 26px;border-radius:980px;font-size:17px;text-decoration:none;transition:transform .2s,opacity .2s}
+.pill:hover{opacity:.88;transform:scale(1.03)}
+.verses{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+.verses span{background:var(--bg2);border-radius:980px;padding:6px 14px;font-size:13px;color:var(--sub)}
+.verses span b{color:var(--text);font-weight:600}
+
+/* sections */
+section{padding:84px 0}
+section.alt{background:var(--bg2)}
+.sec-head{text-align:center;margin-bottom:44px}
+.sec-head .eyebrow{font-size:15px}
+.sec-head h2{font-size:clamp(28px,5vw,44px);font-weight:700;letter-spacing:-.025em;line-height:1.2}
+.sec-head p{color:var(--sub);font-size:18px;margin-top:10px}
+.card{background:var(--card);border-radius:24px;box-shadow:var(--shadow);padding:28px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* quote */
+.quote{font-size:clamp(22px,4vw,34px);font-weight:600;line-height:1.4;text-align:center;letter-spacing:-.02em}
+.quote em{font-style:normal;color:var(--blue)}
+
+/* accordion overview */
+.acc{display:grid;gap:12px}
+.acc-item{background:var(--card);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.acc-item>button{width:100%;display:flex;align-items:center;gap:14px;padding:20px 22px;text-align:left}
+.acc-item .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:20px;flex:none}
+.acc-item .tt{flex:1}
+.acc-item .tt b{display:block;font-size:18px}
+.acc-item .tt small{color:var(--sub);font-size:13px}
+.acc-item .chev{transition:transform .3s;color:var(--sub)}
+.acc-item.open .chev{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.2,1)}
+.acc-body div{padding:0 22px 22px 76px;color:var(--sub);font-size:16px}
+@media(max-width:560px){.acc-body div{padding-left:22px}}
+
+/* flip cards */
+.flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.flip{perspective:1000px;height:300px;cursor:pointer}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:24px;padding:24px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.face.f{background:var(--card);align-items:center;justify-content:center;text-align:center}
+.face.f .num{font-size:13px;color:var(--sub);font-weight:600}
+.face.f .big{font-size:30px;font-weight:700;margin:6px 0 4px}
+.face.f .ref{color:var(--blue);font-size:14px}
+.face.f .hint{position:absolute;bottom:16px;font-size:12px;color:var(--sub)}
+.face.f .emoji{font-size:44px;margin-bottom:8px}
+.face.b{transform:rotateY(180deg);color:#fff;font-size:14.5px;line-height:1.55;justify-content:center;overflow:auto}
+.face.b b{font-size:15px;display:block;margin-bottom:6px}
+.face.b .ap{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.35);font-weight:500}
+.c1 .b{background:linear-gradient(160deg,#0a84ff,#0050c8)}
+.c2 .b{background:linear-gradient(160deg,#30d158,#12853a)}
+.c3 .b{background:linear-gradient(160deg,#ff9f0a,#d46b00)}
+.c4 .b{background:linear-gradient(160deg,#bf5af2,#7a24b5)}
+.summary{margin-top:28px;text-align:center;font-size:18px;color:var(--sub)}
+.summary b{color:var(--text)}
+
+/* segmented */
+.seg{display:flex;background:var(--bg2);border-radius:12px;padding:3px;max-width:560px;margin:0 auto 26px}
+section.alt .seg{background:var(--bg)}
+.seg button{flex:1;padding:9px 6px;border-radius:10px;font-size:14px;font-weight:500;color:var(--sub);transition:all .25s}
+.seg button.on{background:var(--card);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.cmp{display:none;grid-template-columns:1fr 1fr;gap:16px}
+.cmp.on{display:grid;animation:fade .5s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.cmp .side{border-radius:20px;padding:22px;font-size:15.5px}
+.cmp .side h4{font-size:13px;letter-spacing:.04em;margin-bottom:8px;text-transform:none}
+.cmp .a{background:var(--bg2);color:var(--sub)}
+section.alt .cmp .a{background:var(--bg)}
+.cmp .b{background:var(--blue-soft)}
+.cmp .b h4{color:var(--blue)}
+.cmp .full{grid-column:1/-1;background:var(--card);box-shadow:var(--shadow)}
+.cmp .full p+p{margin-top:8px}
+@media(max-width:620px){.cmp{grid-template-columns:1fr}}
+.note{margin-top:20px;text-align:center;color:var(--sub);font-size:16px}
+.note b{color:var(--text)}
+
+/* signals */
+.signals{display:grid;gap:12px;max-width:640px;margin:0 auto}
+.sig{display:flex;align-items:center;gap:14px;background:var(--card);padding:16px 18px;border-radius:18px;box-shadow:var(--shadow);text-align:left;width:100%;transition:transform .2s}
+.sig:active{transform:scale(.98)}
+.sig .sw{width:50px;height:30px;border-radius:15px;background:#d1d1d6;position:relative;flex:none;transition:background .3s}
+.sig .sw::after{content:"";position:absolute;top:2px;left:2px;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.3);transition:transform .3s}
+.sig.on .sw{background:var(--green)}
+.sig.on .sw::after{transform:translateX(20px)}
+.sig-out{max-width:640px;margin:18px auto 0;text-align:center;min-height:56px;font-size:17px;color:var(--sub);transition:color .3s}
+.sig-out.hot{color:var(--orange);font-weight:600}
+
+/* ladder */
+.ladder{display:grid;gap:12px;max-width:640px;margin:0 auto}
+.step{display:flex;gap:16px;align-items:flex-start;background:var(--card);border-radius:20px;padding:18px 20px;box-shadow:var(--shadow);text-align:left;width:100%;opacity:.55;transition:all .4s;position:relative}
+.step:nth-child(1){margin-left:0}.step:nth-child(2){margin-left:24px;width:calc(100% - 24px)}.step:nth-child(3){margin-left:48px;width:calc(100% - 48px)}.step:nth-child(4){margin-left:72px;width:calc(100% - 72px)}
+@media(max-width:560px){.step:nth-child(n){margin-left:0;width:100%}}
+.step .n{width:34px;height:34px;border-radius:50%;background:var(--bg2);display:grid;place-items:center;font-weight:700;flex:none;transition:all .4s}
+.step b{display:block;font-size:17px}
+.step p{color:var(--sub);font-size:15px;max-height:0;overflow:hidden;transition:max-height .4s}
+.step.on{opacity:1;box-shadow:var(--shadow-lg)}
+.step.on .n{background:var(--blue);color:#fff}
+.step.on p{max-height:140px;margin-top:4px}
+.ladder-ctl{display:flex;justify-content:center;gap:10px;margin-top:20px}
+.btn{background:var(--blue);color:#fff;padding:10px 22px;border-radius:980px;font-size:15px;transition:opacity .2s,transform .2s}
+.btn:hover{opacity:.88}.btn:active{transform:scale(.96)}
+.btn.ghost{background:var(--blue-soft);color:var(--blue)}
+
+/* swap */
+.swaps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.swap{border-radius:20px;padding:22px;text-align:left;background:rgba(255,59,48,.10);transition:background .4s,transform .2s;min-height:112px;width:100%}
+.swap:active{transform:scale(.98)}
+.swap small{display:block;font-size:12px;font-weight:600;color:var(--red);margin-bottom:6px}
+.swap span{font-size:18px;font-weight:600}
+.swap.on{background:rgba(52,199,89,.14)}
+.swap.on small{color:#1f9d44}
+.swap .t2{display:none}
+.swap.on .t1{display:none}.swap.on .t2{display:inline}
+
+/* care tabs */
+.care{display:none;animation:fade .5s ease}
+.care.on{display:block}
+.care ul{list-style:none;display:grid;gap:10px}
+.care li{padding:14px 16px;background:var(--bg2);border-radius:14px;font-size:16px}
+.care li b{color:var(--blue)}
+.warn{margin-top:26px;border-radius:24px;padding:26px;background:linear-gradient(135deg,rgba(255,159,10,.14),rgba(255,59,48,.10))}
+.warn h3{font-size:20px;margin-bottom:8px}
+.warn p+p{margin-top:8px}
+
+/* quiz */
+.quiz{max-width:680px;margin:0 auto}
+.qtop{display:flex;justify-content:space-between;align-items:center;color:var(--sub);font-size:14px;margin-bottom:10px}
+.qprog{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:22px}
+.qprog i{display:block;height:100%;width:0;background:var(--blue);border-radius:3px;transition:width .5s}
+.qq{font-size:clamp(20px,3.4vw,26px);font-weight:600;line-height:1.4;margin-bottom:20px;letter-spacing:-.02em}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;padding:15px 18px;border-radius:16px;background:var(--bg2);font-size:16.5px;transition:all .2s;border:2px solid transparent;width:100%}
+section .opt:hover:not(:disabled){background:var(--blue-soft)}
+.opt.ok{background:rgba(52,199,89,.16);border-color:var(--green)}
+.opt.no{background:rgba(255,59,48,.12);border-color:var(--red);animation:shake .4s}
+.opt:disabled{cursor:default}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.exp{margin-top:16px;padding:14px 16px;border-radius:14px;background:var(--blue-soft);font-size:15px;display:none}
+.exp.show{display:block;animation:fade .4s}
+.qnext{margin-top:18px;text-align:right}
+.result{text-align:center;padding:20px 0}
+.score{font-size:80px;font-weight:700;letter-spacing:-.04em;background:linear-gradient(90deg,#0071e3,#af52de);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1}
+.result p{color:var(--sub);font-size:18px;margin:8px 0 22px}
+
+/* fill */
+.fills{display:grid;gap:14px;max-width:760px;margin:0 auto}
+.fill{background:var(--card);border-radius:20px;padding:22px 24px;box-shadow:var(--shadow);font-size:18px;line-height:2.2}
+.fill input{font:inherit;border:none;border-bottom:2px solid var(--blue);background:var(--blue-soft);color:var(--text);border-radius:8px 8px 0 0;padding:2px 8px;text-align:center;outline:none;width:6.2em;transition:all .25s}
+.fill input:focus{background:rgba(0,113,227,.2)}
+.fill input.ok{border-color:var(--green);background:rgba(52,199,89,.18)}
+.fill input.no{border-color:var(--red);background:rgba(255,59,48,.14);animation:shake .4s}
+.fill .tag{display:block;font-size:12px;font-weight:600;color:var(--sub);line-height:1.4;margin-bottom:4px}
+.fill-ctl{display:flex;gap:10px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+.fill-msg{text-align:center;margin-top:14px;color:var(--sub);min-height:26px}
+
+/* discussion */
+.dis{display:grid;gap:12px;max-width:760px;margin:0 auto 40px}
+.dis details{background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:0}
+.dis summary{list-style:none;cursor:pointer;padding:18px 22px;display:flex;gap:14px;align-items:flex-start;font-weight:600;font-size:17px}
+.dis summary::-webkit-details-marker{display:none}
+.dis summary .q{width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:14px;flex:none;margin-top:1px}
+.dis details p{padding:0 22px 20px 66px;color:var(--sub);font-size:15.5px}
+.dis textarea{display:block;width:calc(100% - 88px);margin:0 22px 20px 66px;min-height:80px;border:1px solid var(--line);background:var(--bg2);color:var(--text);border-radius:12px;padding:12px;font:inherit;font-size:15px;resize:vertical;outline:none}
+.dis textarea:focus{border-color:var(--blue)}
+@media(max-width:560px){.dis details p{padding-left:22px}.dis textarea{margin-left:22px;width:calc(100% - 44px)}}
+.todo-wrap{max-width:760px;margin:0 auto}
+.todo-wrap h3{text-align:center;font-size:24px;margin-bottom:6px}
+.todo-wrap .sub{text-align:center;color:var(--sub);margin-bottom:20px}
+.todos{display:grid;gap:10px}
+.todo{display:flex;gap:14px;align-items:flex-start;background:var(--card);padding:16px 18px;border-radius:18px;box-shadow:var(--shadow);text-align:left;width:100%;transition:all .3s}
+.todo .ck{width:26px;height:26px;border-radius:50%;border:2px solid #c7c7cc;flex:none;display:grid;place-items:center;color:transparent;font-size:15px;transition:all .3s;margin-top:1px}
+.todo.on .ck{background:var(--green);border-color:var(--green);color:#fff}
+.todo.on span{color:var(--sub);text-decoration:line-through}
+.tprog{height:8px;background:var(--line);border-radius:4px;margin-top:18px;overflow:hidden}
+.tprog i{display:block;height:100%;width:0;background:var(--green);transition:width .5s}
+.tmsg{text-align:center;color:var(--sub);margin-top:10px;font-size:15px}
+
+/* prayer */
+.prayer{text-align:center;padding:110px 0;background:linear-gradient(180deg,var(--bg),#0b1b3a 140%)}
+@media(prefers-color-scheme:dark){.prayer{background:linear-gradient(180deg,#000,#0b1b3a 140%)}}
+.prayer h2{font-size:clamp(26px,4.5vw,40px);margin-bottom:18px}
+.prayer p{max-width:560px;margin:0 auto;color:var(--sub);font-size:18px}
+.prayer .amen{margin:34px auto 0;font-size:20px;font-weight:600;color:var(--blue);max-width:560px}
+.dove{font-size:56px;margin-bottom:6px;display:inline-block;animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+footer{text-align:center;color:var(--sub);font-size:13px;padding:30px 0 50px}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:100}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <b>제7강 복습</b>
+    <a href="#overview">개요</a>
+    <a href="#p1">1부</a>
+    <a href="#p2">2부</a>
+    <a href="#p3">3부</a>
+    <a href="#quiz">퀴즈</a>
+    <a href="#fill">빈칸</a>
+    <a href="#apply">적용</a>
+    <a href="#pray">기도</a>
+  </div>
+  <div id="bar"></div>
+</nav>
+
+<header class="hero wrap">
+  <div class="eyebrow rv">목장 리더 모임 · 제7강</div>
+  <h1 class="rv">한 영혼을<br><span>품는 목자</span></h1>
+  <p class="lead rv">목장 모임을 위해 사람이 있는 것이 아니라,<br>사람을 위해 목장 모임이 있다.</p>
+  <div class="meta rv">Oct 15, 2026 · @Jinseok</div>
+  <div class="verses rv">
+    <span><b>중심</b> 누가복음 15:3–7</span>
+    <span><b>보조</b> 데살로니가전서 2:7–8</span>
+    <span><b>참고</b> 에스겔 34:11–16</span>
+  </div>
+  <a class="pill rv" href="#overview">복습 시작하기</a>
+</header>
+
+<section id="overview" class="alt">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">강의 개요</div>
+      <h2>오늘 강의, 한눈에</h2>
+      <p>이번 강의의 목표는 목자의 관심을 "모임을 잘 진행하는 것"에서 "하나님이 맡기신 한 사람을 사랑하는 것"으로 옮기는 것입니다. 7–10강 단원(사람을 돌보는 목자)의 문을 여는 강의입니다.</p>
+    </div>
+    <div class="acc rv">
+      <div class="acc-item">
+        <button><span class="ic" style="background:rgba(0,113,227,.14)">🌅</span><span class="tt"><b>도입</b><small>4분</small></span><span class="chev">⌄</span></button>
+        <div class="acc-body"><div>"모임을 어떻게 진행할까?"에서 "모임에 오는 그 사람을 어떻게 품을까?"로 질문을 바꿉니다. 목자가 모임만 생각하기 시작하면, 목원은 어느새 "출석 인원"이 됩니다. 예수님은 아흔아홉이라는 숫자보다 한 마리의 이름을 먼저 생각하셨습니다.</div></div>
+      </div>
+      <div class="acc-item">
+        <button><span class="ic" style="background:rgba(52,199,89,.16)">🐑</span><span class="tt"><b>1부. 잃은 양을 찾는 목자</b><small>누가복음 15:3–7 · 9분</small></span><span class="chev">⌄</span></button>
+        <div class="acc-body"><div>목자는 하나의 소중함을 알고, 찾아가고, 짊어지고, 함께 기뻐하는 사람입니다.</div></div>
+      </div>
+      <div class="acc-item">
+        <button><span class="ic" style="background:rgba(255,159,10,.18)">🤱</span><span class="tt"><b>2부. 유모처럼 품는 목자</b><small>데살로니가전서 2:7–8 · 8분</small></span><span class="chev">⌄</span></button>
+        <div class="acc-body"><div>바울이 이렇게 사랑할 수 있었던 이유는 먼저 그리스도의 사랑을 받았기 때문입니다. 목자의 사랑이 마를 때 해결책은 더 노력하는 것이 아니라, 나를 찾아오신 목자이신 그리스도께 다시 가는 것입니다.</div></div>
+      </div>
+      <div class="acc-item">
+        <button><span class="ic" style="background:rgba(175,82,222,.16)">🏘️</span><span class="tt"><b>3부. 이민교회 목장에서 한 영혼을 품는다는 것</b><small>8분</small></span><span class="chev">⌄</span></button>
+        <div class="acc-body"><div>이민교회에서는 성도가 조용히 "잃은 양"이 되기 쉽습니다. 그래서 목자는 말보다 빈자리를 먼저 읽어야 합니다.</div></div>
+      </div>
+      <div class="acc-item">
+        <button><span class="ic" style="background:rgba(255,59,48,.14)">🙏</span><span class="tt"><b>정리와 적용</b><small>4분 + 토론</small></span><span class="chev">⌄</span></button>
+        <div class="acc-body"><div>좋은 목자는 한 사람을 알고, 찾아가고, 짊어지고, 함께 기뻐합니다. 그리고 말씀과 함께 자기 삶을 줍니다. 이 사랑은 우리를 먼저 찾아오신 그리스도에게서 흘러나옵니다.</div></div>
+      </div>
+    </div>
+    <div class="card rv" style="margin-top:36px">
+      <div class="quote">"지난 목장 모임이 끝나고 돌아갈 때,<br>나는 주로 <em>무엇</em>을 생각했을까?"</div>
+      <p style="text-align:center;color:var(--sub);margin-top:14px">"오늘 모임이 잘 됐나?" 혹은 "그 집사님 표정이 왜 어두웠을까?" — 둘 다 필요합니다. 잠시 마음속으로 대답해 보세요.</p>
+    </div>
+  </div>
+</section>
+
+<section id="p1">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">1부 · 누가복음 15:3–7</div>
+      <h2>잃은 양을 찾는 목자</h2>
+      <p>카드를 눌러 뒤집어 보세요. 뒷면에 본문 설명과 적용이 있습니다.</p>
+    </div>
+    <div class="flips rv">
+      <div class="flip c1" tabindex="0" role="button" aria-label="첫째 카드 뒤집기"><div class="flip-in">
+        <div class="face f"><div class="emoji">👀</div><div class="num">첫째 · 15:4a</div><div class="big">알고</div><div class="ref">"하나"의 소중함</div><div class="hint">눌러서 뒤집기</div></div>
+        <div class="face b"><div><b>하나의 소중함을 알아야 합니다</b>백 마리 중 하나가 없어진 것을 안다는 것은, 목자가 날마다 양을 하나하나 세었다는 뜻입니다. 숫자가 아니라 얼굴을 기억했다는 뜻입니다(요 10:3, "이름을 각각 불러").<div class="ap">적용: 좋은 목자는 "오늘 몇 명 왔나"보다 "오늘 누가 안 왔나"를 먼저 압니다.</div></div></div>
+      </div></div>
+      <div class="flip c2" tabindex="0" role="button" aria-label="둘째 카드 뒤집기"><div class="flip-in">
+        <div class="face f"><div class="emoji">🚶</div><div class="num">둘째 · 15:4b</div><div class="big">찾아가고</div><div class="ref">기다리지 않고</div><div class="hint">눌러서 뒤집기</div></div>
+        <div class="face b"><div><b>기다리지 않고 찾아갑니다</b>목자는 아흔아홉을 두고 "찾아내기까지" 갑니다. 에스겔 34장에서 하나님이 거짓 목자들을 책망하신 이유가 바로 이것입니다. 그들은 잃어버린 자를 찾지 않았습니다(겔 34:4). 그래서 하나님은 "내가 친히 내 양을 찾겠다"고 하십니다(겔 34:11).<div class="ap">적용: 두 주 연속 빠진 목원에게 먼저 연락하는 것은 목자의 "관리"가 아니라 목자의 "사랑"입니다.</div></div></div>
+      </div></div>
+      <div class="flip c3" tabindex="0" role="button" aria-label="셋째 카드 뒤집기"><div class="flip-in">
+        <div class="face f"><div class="emoji">🫂</div><div class="num">셋째 · 15:5</div><div class="big">짊어지고</div><div class="ref">꾸짖지 않고 어깨에</div><div class="hint">눌러서 뒤집기</div></div>
+        <div class="face b"><div><b>꾸짖지 않고 어깨에 멥니다</b>길 잃은 양은 겁에 질려 주저앉고 스스로 걷지 못하는 경우가 많습니다. 목자는 "왜 나갔느냐"고 따지지 않고, 그 무게를 자기 어깨에 집니다. 그것도 "즐거워" 하며 집니다.<div class="ap">적용: 돌아온 목원에게 "그동안 왜 안 나왔어요?"라는 질문보다 "보고 싶었어요"라는 말이 먼저입니다.</div></div></div>
+      </div></div>
+      <div class="flip c4" tabindex="0" role="button" aria-label="넷째 카드 뒤집기"><div class="flip-in">
+        <div class="face f"><div class="emoji">🎉</div><div class="num">넷째 · 15:6–7</div><div class="big">기뻐함</div><div class="ref">공동체와 함께</div><div class="hint">눌러서 뒤집기</div></div>
+        <div class="face b"><div><b>공동체와 함께 기뻐합니다</b>목자는 양을 찾은 뒤 친구와 이웃을 불러 함께 기뻐합니다. 한 영혼의 회복은 개인의 일이 아니라 공동체의 일이고, 하늘의 기쁨입니다.<div class="ap">적용: 목장은 한 사람이 돌아왔을 때 함께 기뻐하는 곳이어야 합니다. 목자를 움직이는 힘은 의무감이 아니라 이 기쁨입니다.</div></div></div>
+      </div></div>
+    </div>
+    <p class="summary rv"><b>1부 정리</b> 목자는 하나의 소중함을 알고, 찾아가고, 짊어지고, 함께 기뻐하는 사람입니다.</p>
+    <div class="card rv" style="margin-top:30px;background:var(--blue-soft);box-shadow:none">
+      <b>배경 (1분)</b>
+      <p style="color:var(--sub);margin-top:6px">이 비유는 세리와 죄인들이 예수님께 가까이 오고, 바리새인과 서기관들이 수군거리는 상황에서 나왔습니다(15:1–2). 그러니 이 비유는 먼저 목자의 기술이 아니라 <b style="color:var(--text)">하나님의 마음과 예수님의 사역</b>을 보여 줍니다. 참 목자는 예수님이시고, 우리는 모두 한때 그 잃은 양이었습니다. 우리는 그분께 찾아진 사람으로서, 그분 아래에서 양을 돌보는 작은 목자입니다(벧전 5:4).</p>
+    </div>
+  </div>
+</section>
+
+<section id="p2" class="alt">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">2부 · 데살로니가전서 2:7–8</div>
+      <h2>유모처럼 품는 목자</h2>
+      <p>세 가지 모습을 탭으로 넘겨 보세요.</p>
+    </div>
+    <div class="rv">
+      <div class="seg" data-target="cmp">
+        <button class="on">첫째</button><button>둘째</button><button>셋째</button>
+      </div>
+      <div class="cmp on">
+        <div class="side a"><h4>권위로</h4>사도로서 권위를 내세울 수 있었지만…</div>
+        <div class="side b"><h4>온유함으로 (2:6–7)</h4>"유모가 자기 자녀를 기름과 같이" 대했습니다. "기르다"는 어미 새가 품어서 따뜻하게 한다는 뜻입니다(헬라어 "탈포"; 70인역 신 22:6).</div>
+        <div class="side full"><b>적용</b><p style="color:var(--sub)">목자의 영향력은 직분에서 나오지 않고, 목원이 "이분은 나를 아끼는구나"라고 느낄 때 생깁니다.</p></div>
+      </div>
+      <div class="cmp">
+        <div class="side a"><h4>말씀만</h4>복음을 전달하는 것에 그치는 목장</div>
+        <div class="side b"><h4>말씀과 함께 삶을 (2:8)</h4>바울은 복음만이 아니라 "목숨까지" 주기를 기뻐했습니다. "목숨"은 자기 자신, 곧 시간과 마음과 삶 전체를 가리킵니다.</div>
+        <div class="side full"><b>적용</b><p style="color:var(--sub)">성경 지식이 많은 목자보다 목원의 이사 날 와서 짐을 날라 준 목자가 더 오래 기억됩니다.</p></div>
+      </div>
+      <div class="cmp">
+        <div class="side a"><h4>어머니의 품</h4>따뜻하게 품는 사랑</div>
+        <div class="side b"><h4>아버지의 권면 (2:11–12)</h4>성도들이 "하나님께 합당히 행하게" 하려고 권면하고, 위로하고, 경계했습니다. 사람을 품는다는 것은 그 사람을 그대로 두는 것이 아니라, 그리스도께로 함께 걸어가는 것입니다.</div>
+        <div class="side full"><b>적용</b><p style="color:var(--sub)">목양은 "좋은 사람"이 되는 것이 아니라, 목원이 하나님 앞에서 자라도록 곁에 있어 주는 것입니다.</p></div>
+      </div>
+    </div>
+    <p class="note rv"><b>2부 정리</b> 바울이 이렇게 사랑할 수 있었던 이유는 먼저 그리스도의 사랑을 받았기 때문입니다. 목자의 사랑이 마를 때 해결책은 더 노력하는 것이 아니라, 나를 찾아오신 목자이신 그리스도께 다시 가는 것입니다.</p>
+    <div class="card rv" style="margin-top:30px">
+      <b>배경 (1분)</b>
+      <p style="color:var(--sub);margin-top:6px">바울이 데살로니가에 머문 기간은 길지 않았습니다. 사도행전 17:2은 세 안식일 동안 회당에서 강론했다고 기록합니다. 그런데도 그는 짧은 시간 안에 데살로니가 성도들과 깊은 사랑의 관계를 맺었습니다. 바쁜 이민 생활 속에서 목장을 섬기는 목자들에게 큰 위로가 되는 사실입니다. 관계의 깊이는 시간의 길이만으로 결정되지 않습니다.</p>
+    </div>
+  </div>
+</section>
+
+<section id="p3">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">3부</div>
+      <h2>이민교회 목장에서<br>한 영혼을 품는다는 것</h2>
+      <p>이민교회에서는 성도가 조용히 "잃은 양"이 되기 쉽습니다. 일이 너무 많아서, 언어와 문화 때문에 외로워서, 그리고 좁은 한인사회에서 약한 모습을 보이기 싫어서 사람들은 "괜찮다"고 말하며 조금씩 멀어집니다. 그래서 목자는 말보다 빈자리를 먼저 읽어야 합니다.</p>
+    </div>
+
+    <h3 class="rv" style="text-align:center;font-size:24px;margin-bottom:16px">① 빈자리를 읽는 신호</h3>
+    <div class="signals rv" id="signals">
+      <button class="sig"><span class="sw"></span><span>두 주 연속 결석했거나, 오던 사람이 갑자기 늦게 오고 일찍 갑니다.</span></button>
+      <button class="sig"><span class="sw"></span><span>단체 카톡에 반응이 줄고, 늘 하던 농담이나 아이 이야기가 사라집니다.</span></button>
+      <button class="sig"><span class="sw"></span><span>"괜찮아요", "바빠서요"라는 대답이 반복됩니다. 이유를 설명하지 않는 "괜찮다"가 신호입니다.</span></button>
+    </div>
+    <div class="sig-out rv" id="sigOut">우리 목장을 떠올리며 해당하는 신호를 켜 보세요.</div>
+
+    <h3 class="rv" style="text-align:center;font-size:24px;margin:60px 0 6px">② 연락 사다리 놓기</h3>
+    <p class="rv" style="text-align:center;color:var(--sub);margin-bottom:22px">가볍고 부담 없는 것부터 시작해서 한 단계씩 올라갑니다.</p>
+    <div class="ladder rv" id="ladder">
+      <button class="step on"><span class="n">1</span><span><b>짧은 문자</b><p>예: "오늘 문득 생각났어요. 요즘 어떠세요? 답 안 하셔도 괜찮아요."</p></span></button>
+      <button class="step"><span class="n">2</span><span><b>전화</b><p>5분 안에 끝낼 생각으로 합니다. 용건은 안부뿐입니다.</p></span></button>
+      <button class="step"><span class="n">3</span><span><b>짧은 방문</b><p>현관이나 가게 앞에서 10분 머뭅니다. 커피 한 잔, 밑반찬 한 통을 들고 갑니다.</p></span></button>
+      <button class="step"><span class="n">4</span><span><b>함께하는 시간</b><p>식사, 장보기, 병원이나 서류 동행으로 이어 갑니다.</p></span></button>
+    </div>
+    <div class="ladder-ctl rv"><button class="btn ghost" id="ldDown">내려가기</button><button class="btn" id="ldUp">한 단계 올라가기</button></div>
+
+    <h3 class="rv" style="text-align:center;font-size:24px;margin:60px 0 6px">③ 하지 말아야 할 말</h3>
+    <p class="rv" style="text-align:center;color:var(--sub);margin-bottom:22px">카드를 눌러 바른 말로 바꿔 보세요.</p>
+    <div class="swaps rv">
+      <button class="swap"><small class="t1">이 말 대신</small><small class="t2">이렇게</small><span class="t1">"왜 요즘 안 나오세요?"</span><span class="t2">"보고 싶었어요."</span></button>
+      <button class="swap"><small class="t1">이 말 대신</small><small class="t2">이렇게</small><span class="t1">"목장 꼭 나오세요."</span><span class="t2">"편할 때 오세요. 자리는 늘 있어요."</span></button>
+      <button class="swap"><small class="t1">이것도 하지 마세요</small><small class="t2">이렇게</small><span class="t1">다른 목원 앞에서 "개인적인 사정"을 말한다</span><span class="t2">개인적인 사정은 말하지 않습니다.</span></button>
+    </div>
+
+    <h3 class="rv" style="text-align:center;font-size:24px;margin:60px 0 18px">④ 이민 현실에 맞춘 구체적 돌봄</h3>
+    <div class="rv">
+      <div class="seg" data-target="care"><button class="on">언어·행정</button><button>생활</button><button>새로 온 분</button></div>
+      <div class="card">
+        <div class="care on"><ul><li><b>언어·행정 돕기</b></li><li>학교·병원 서류, 보험, 우편물 읽어 주기</li><li>병원 동행 통역</li></ul></div>
+        <div class="care"><ul><li><b>생활 돕기</b></li><li>운전이 어려운 분은 차로 모시고</li><li>이사나 출산 때는 음식과 짐 나르기로 돕습니다.</li></ul></div>
+        <div class="care"><ul><li><b>새로 온 분: 처음 90일이 가장 외롭습니다.</b></li><li>마트·약국·소아과를 안내하고</li><li>목장 밖에서 먼저 한 번 만납니다.</li></ul></div>
+      </div>
+    </div>
+
+    <div class="warn rv">
+      <h3>정리 · 혼자 짊어지지 않습니다</h3>
+      <p>목자는 목원들의 모든 문제를 해결하지 않습니다. 우울, 가정 갈등, 경제 위기, 체류 문제처럼 무거운 이야기를 들으면 목자 혼자 해결하려 하지 않습니다. 담임목사에게 알리고 함께 기도합니다.</p>
+      <p><b>들은 이야기는 허락 없이 목장에서 나누지 않습니다.</b></p>
+    </div>
+  </div>
+</section>
+
+<section id="quiz" class="alt">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">퀴즈</div>
+      <h2>얼마나 기억나나요?</h2>
+      <p>10문항. 보기를 누르면 바로 해설이 나옵니다.</p>
+    </div>
+    <div class="card quiz rv" id="quizBox"></div>
+  </div>
+</section>
+
+<section id="fill">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">빈칸 채우기</div>
+      <h2>핵심 문장을 완성하세요</h2>
+      <p>입력하고 Enter 또는 '채점하기'를 누르세요.</p>
+    </div>
+    <div class="fills rv" id="fills"></div>
+    <div class="fill-ctl rv"><button class="btn" id="fillCheck">채점하기</button><button class="btn ghost" id="fillHint">정답 보기</button><button class="btn ghost" id="fillReset">다시 하기</button></div>
+    <div class="fill-msg" id="fillMsg"></div>
+  </div>
+</section>
+
+<section id="apply" class="alt">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">정리와 적용</div>
+      <h2>토론하고, 실천하기</h2>
+      <p><b style="color:var(--text)">핵심 정리</b> 좋은 목자는 한 사람을 알고, 찾아가고, 짊어지고, 함께 기뻐합니다. 그리고 말씀과 함께 자기 삶을 줍니다. 이 사랑은 우리를 먼저 찾아오신 그리스도에게서 흘러나옵니다.</p>
+    </div>
+    <div class="card rv" style="margin-bottom:36px"><div class="quote">목장 모임을 위해 <em>사람</em>이 있는 것이 아니라,<br><em>사람</em>을 위해 목장 모임이 있다.</div></div>
+
+    <h3 class="rv" style="text-align:center;font-size:24px;margin-bottom:16px">토론질문</h3>
+    <div class="dis rv">
+      <details><summary><span class="q">1</span>누가복음 15장의 목자의 네 가지 모습(알고, 찾아가고, 짊어지고, 기뻐함) 가운데 나에게 가장 부족한 것은 무엇입니까? 왜 그렇습니까?</summary><textarea data-k="d1" placeholder="나의 생각 (이 기기에만 저장됩니다)"></textarea></details>
+      <details><summary><span class="q">2</span>내가 신앙생활에서 "잃은 양"처럼 멀어졌을 때, 누군가 나를 찾아와 준 경험이 있습니까? 그때 무엇이 가장 힘이 되었습니까?</summary><textarea data-k="d2" placeholder="나의 생각 (이 기기에만 저장됩니다)"></textarea></details>
+      <details><summary><span class="q">3</span>우리 목장에서 지금 조용히 멀어지고 있는 사람은 누구일까요? (이름은 말하지 말고) 그런 사람에게 다가가기 어려운 이유는 무엇입니까?</summary><textarea data-k="d3" placeholder="이름은 적지 마세요. 이유만 적어 보세요."></textarea></details>
+    </div>
+
+    <div class="todo-wrap rv">
+      <h3>이번 주 실천과제</h3>
+      <p class="sub">할 때마다 눌러서 체크하세요.</p>
+      <div class="todos" id="todos">
+        <button class="todo" data-k="t1"><span class="ck">✓</span><span>목원 명단을 적고, 이름 옆에 그 사람의 요즘 형편이나 기도제목을 한 줄씩 써 보기. 쓸 수 없는 이름이 있다면 그 사람이 이번 주 나의 "한 마리 양"입니다.</span></button>
+        <button class="todo" data-k="t2"><span class="ck">✓</span><span>그 한 사람에게 이번 주 안에 연락하기 (전화, 짧은 방문, 식사). 목장 출석 이야기는 하지 않고 안부만 묻기.</span></button>
+        <button class="todo" data-k="t3"><span class="ck">✓</span><span>다음 주 목요일에 무엇을 했고 무엇을 느꼈는지 한 문장으로 나누기 (개인 사정은 빼고).</span></button>
+      </div>
+      <div class="tprog"><i id="tbar"></i></div>
+      <div class="tmsg" id="tmsg">0 / 3 완료</div>
+    </div>
+  </div>
+</section>
+
+<section id="pray" class="prayer">
+  <div class="wrap rv">
+    <div class="dove">🕊️</div>
+    <h2>마무리 합심기도</h2>
+    <p>각 목자가 실천과제의 "한 사람"을 마음에 두고, 이름을 소리 내지 않고 기도합니다.</p>
+    <p class="amen">"우리를 먼저 찾아오신 선한 목자 예수님,<br>우리에게 그 마음을 주십시오."</p>
+  </div>
+</section>
+
+<footer>제7강 한 영혼을 품는 목자 · 복습 자료</footer>
+<canvas id="confetti"></canvas>
+
+<script>
+(function(){
+  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+  const store={
+    get(k){try{return localStorage.getItem('shep7_'+k)}catch(e){return null}},
+    set(k,v){try{localStorage.setItem('shep7_'+k,v)}catch(e){}}
+  };
+
+  /* reveal */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  $$('.rv').forEach(el=>io.observe(el));
+
+  /* progress + nav highlight */
+  const bar=$('#bar'), links=$$('nav a');
+  const secs=links.map(a=>$(a.getAttribute('href')));
+  function onScroll(){
+    const h=document.documentElement.scrollHeight-innerHeight;
+    bar.style.width=(h>0?scrollY/h*100:0)+'%';
+    let cur=-1; secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<innerHeight*.4)cur=i});
+    links.forEach((a,i)=>a.classList.toggle('on',i===cur));
+  }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  /* accordion */
+  $$('.acc-item').forEach(it=>{
+    const body=$('.acc-body',it);
+    $('button',it).addEventListener('click',()=>{
+      const open=it.classList.toggle('open');
+      body.style.maxHeight=open?body.scrollHeight+'px':0;
+    });
+  });
+
+  /* flip cards */
+  $$('.flip').forEach(f=>{
+    const t=()=>f.classList.toggle('on');
+    f.addEventListener('click',t);
+    f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}});
+  });
+
+  /* segmented tabs */
+  $$('.seg').forEach(seg=>{
+    const cls='.'+seg.dataset.target;
+    const panels=$$(cls,seg.parentElement);
+    $$('button',seg).forEach((b,i)=>b.addEventListener('click',()=>{
+      $$('button',seg).forEach(x=>x.classList.toggle('on',x===b));
+      panels.forEach((p,j)=>p.classList.toggle('on',i===j));
+    }));
+  });
+
+  /* signals */
+  const sigs=$$('#signals .sig'), sigOut=$('#sigOut');
+  function updSig(){
+    const n=sigs.filter(s=>s.classList.contains('on')).length;
+    sigOut.classList.toggle('hot',n>0);
+    sigOut.textContent=[
+      '우리 목장을 떠올리며 해당하는 신호를 켜 보세요.',
+      '신호가 하나 보입니다. 가볍게 짧은 문자부터 시작해 보세요.',
+      '신호가 둘입니다. 문자 다음에 전화로 안부를 물어볼 때입니다.',
+      '신호가 셋입니다. 이번 주 안에 짧은 방문이나 식사를 생각해 보세요.'
+    ][n];
+  }
+  sigs.forEach(s=>s.addEventListener('click',()=>{s.classList.toggle('on');updSig()}));
+
+  /* ladder */
+  const steps=$$('#ladder .step'); let lv=0;
+  function setLv(n){lv=Math.max(0,Math.min(steps.length-1,n));steps.forEach((s,i)=>s.classList.toggle('on',i<=lv))}
+  $('#ldUp').addEventListener('click',()=>setLv(lv+1));
+  $('#ldDown').addEventListener('click',()=>setLv(lv-1));
+  steps.forEach((s,i)=>s.addEventListener('click',()=>setLv(i)));
+  setLv(0);
+
+  /* swap */
+  $$('.swap').forEach(s=>s.addEventListener('click',()=>s.classList.toggle('on')));
+
+  /* quiz */
+  const Q=[
+    {q:'오늘 강의 핵심 문장은 무엇입니까?',o:['목장은 모임의 질이 가장 중요하다','목장 모임을 위해 사람이 있는 것이 아니라, 사람을 위해 목장 모임이 있다','목자는 모든 목원의 문제를 해결해야 한다','출석률이 목장의 건강을 말해 준다'],a:1,e:'핵심 문장입니다. 관심을 "모임을 잘 진행하는 것"에서 "하나님이 맡기신 한 사람을 사랑하는 것"으로 옮기는 것이 이번 강의의 목표입니다.'},
+    {q:'누가복음 15장의 비유가 나온 상황은 어떤 것입니까?',o:['제자들이 누가 크냐고 다투던 때','세리와 죄인들이 예수님께 가까이 오고, 바리새인과 서기관들이 수군거리던 때','예수님이 광야에서 시험받으신 직후','오천 명을 먹이신 뒤'],a:1,e:'15:1–2의 상황입니다. 그래서 이 비유는 먼저 목자의 기술이 아니라 하나님의 마음과 예수님의 사역을 보여 줍니다.'},
+    {q:'1부에서 말한 목자의 네 가지 모습이 아닌 것은?',o:['알고','찾아가고','꾸짖고','기뻐함'],a:2,e:'알고, 찾아가고, 짊어지고, 기뻐함입니다. 목자는 꾸짖지 않고 어깨에 멥니다(15:5).'},
+    {q:'에스겔 34:4에서 하나님이 거짓 목자들을 책망하신 이유는?',o:['양을 너무 많이 모아서','잃어버린 자를 찾지 않아서','말씀을 가르치지 않아서','모임을 자주 열지 않아서'],a:1,e:'그들은 잃어버린 자를 찾지 않았습니다. 그래서 하나님은 "내가 친히 내 양을 찾겠다"고 하십니다(겔 34:11).'},
+    {q:'데살로니가전서 2:7의 "기르다"(헬라어 "탈포")가 담고 있는 뜻은?',o:['엄하게 훈련하다','멀리서 지켜보다','어미 새가 품어서 따뜻하게 하다','먹을 것을 나누어 주다'],a:2,e:'70인역 신명기 22:6에서 알을 품은 어미 새에 쓰인 말입니다.'},
+    {q:'사도행전 17:2에 따르면 바울이 데살로니가 회당에서 강론한 기간은?',o:['세 안식일','한 달','반년','일 년'],a:0,e:'길지 않은 시간이었지만 깊은 사랑의 관계를 맺었습니다. 관계의 깊이는 시간의 길이만으로 결정되지 않습니다.'},
+    {q:'바울이 어머니의 품과 함께 말한 것은 무엇입니까? (2:11–12)',o:['판사의 심판','아버지의 권면','왕의 명령','스승의 시험'],a:1,e:'바울은 성도들이 "하나님께 합당히 행하게" 하려고 권면하고, 위로하고, 경계했습니다. 사람을 품는다는 것은 그리스도께로 함께 걸어가는 것입니다.'},
+    {q:'빈자리를 읽는 신호로, 강의에서 "이것이 신호"라고 한 것은?',o:['모임에 일찍 와서 준비하는 것','이유를 설명하지 않는 "괜찮다"','헌금을 빠뜨리는 것','찬양을 크게 부르지 않는 것'],a:1,e:'"괜찮아요", "바빠서요"라는 대답이 반복될 때, 이유를 설명하지 않는 "괜찮다"가 신호입니다.'},
+    {q:'연락 사다리의 순서로 맞는 것은?',o:['전화 → 문자 → 방문 → 식사','방문 → 전화 → 문자 → 식사','짧은 문자 → 전화 → 짧은 방문 → 함께하는 시간','식사 → 방문 → 전화 → 문자'],a:2,e:'가볍고 부담 없는 것부터 시작해서 한 단계씩 올라갑니다.'},
+    {q:'목원에게서 우울, 가정 갈등, 경제 위기, 체류 문제 같은 무거운 이야기를 들었을 때 목자가 할 일은?',o:['목장에서 함께 나누며 기도한다','혼자 해결하려고 애쓴다','담임목사에게 알리고 함께 기도한다','못 들은 척한다'],a:2,e:'목자 혼자 해결하려 하지 않습니다. 그리고 들은 이야기는 허락 없이 목장에서 나누지 않습니다.'}
+  ];
+  const box=$('#quizBox'); let qi=0, score=0, answered=false;
+  function renderQ(){
+    answered=false;
+    const d=Q[qi];
+    box.innerHTML=`<div class="qtop"><span>${qi+1} / ${Q.length}</span><span>점수 ${score}</span></div>
+      <div class="qprog"><i style="width:${qi/Q.length*100}%"></i></div>
+      <div class="qq"></div><div class="opts"></div><div class="exp"></div><div class="qnext"></div>`;
+    $('.qq',box).textContent=d.q;
+    const opts=$('.opts',box);
+    d.o.forEach((t,i)=>{
+      const b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.addEventListener('click',()=>pick(i));opts.appendChild(b);
+    });
+  }
+  function pick(i){
+    if(answered)return; answered=true;
+    const d=Q[qi], bs=$$('.opt',box);
+    bs.forEach((b,j)=>{b.disabled=true;if(j===d.a)b.classList.add('ok')});
+    if(i===d.a){score++}else{bs[i].classList.add('no')}
+    const ex=$('.exp',box);ex.textContent=(i===d.a?'정답입니다! ':'아쉬워요. ')+d.e;ex.classList.add('show');
+    const nx=document.createElement('button');nx.className='btn';
+    nx.textContent=qi<Q.length-1?'다음 문제':'결과 보기';
+    nx.addEventListener('click',()=>{qi++;qi<Q.length?renderQ():result()});
+    $('.qnext',box).appendChild(nx);
+    $('.qtop span:last-child',box).textContent='점수 '+score;
+  }
+  function result(){
+    const pct=score/Q.length;
+    const msg=pct===1?'완벽합니다! 한 영혼을 품을 준비가 되었어요.':pct>=.7?'아주 잘하셨어요. 틀린 부분만 다시 보면 충분합니다.':'괜찮아요. 위의 카드와 사다리를 한 번 더 살펴보고 다시 도전해 보세요.';
+    box.innerHTML=`<div class="result"><div class="score">${score} / ${Q.length}</div><p>${msg}</p><button class="btn" id="qRe">다시 풀기</button></div>`;
+    $('#qRe').addEventListener('click',()=>{qi=0;score=0;renderQ()});
+    if(pct>=.7)confetti();
+  }
+  renderQ();
+
+  /* fill in the blank */
+  const F=[
+    {t:'목장 모임을 위해 [0]이 있는 것이 아니라, [1]을 위해 목장 모임이 있다.',a:[['사람'],['사람']]},
+    {t:'좋은 목자는 한 사람을 알고, [0], 짊어지고, 함께 [1].',a:[['찾아가고'],['기뻐합니다','기뻐함','기뻐하고','기뻐해요']]},
+    {t:'목자의 영향력은 직분에서 나오지 않고, 목원이 "이분은 나를 [0]구나"라고 느낄 때 생깁니다.',a:[['아끼는']]},
+    {t:'이유를 설명하지 않는 "[0]"가 신호입니다.',a:[['괜찮다']]},
+    {t:'새로 온 분은 처음 [0]일이 가장 외롭습니다.',a:[['90','구십']]}
+  ];
+  const fills=$('#fills'); let inputs=[];
+  function buildFill(){
+    fills.innerHTML='';inputs=[];
+    F.forEach((f,n)=>{
+      const div=document.createElement('div');div.className='fill';
+      const tag=document.createElement('span');tag.className='tag';tag.textContent='문장 '+(n+1);div.appendChild(tag);
+      f.t.split(/(\[\d\])/).forEach(p=>{
+        const m=p.match(/^\[(\d)\]$/);
+        if(m){const i=document.createElement('input');i.type='text';i.autocomplete='off';i.setAttribute('aria-label','빈칸');
+          i._ans=f.a[+m[1]];
+          i.addEventListener('input',()=>i.classList.remove('ok','no'));
+          i.addEventListener('keydown',e=>{if(e.key==='Enter')check()});
+          div.appendChild(i);inputs.push(i)}
+        else div.appendChild(document.createTextNode(p));
+      });
+      fills.appendChild(div);
+    });
+    $('#fillMsg').textContent='';
+  }
+  const norm=s=>s.replace(/\s+/g,'').replace(/[".,]/g,'');
+  function check(){
+    let ok=0;
+    inputs.forEach(i=>{
+      const v=norm(i.value);
+      const good=v&&i._ans.some(a=>norm(a)===v);
+      i.classList.remove('ok','no');
+      if(good){i.classList.add('ok');ok++}else if(v){i.classList.add('no')}
+    });
+    $('#fillMsg').textContent=`${ok} / ${inputs.length} 정답`+(ok===inputs.length?' 🎉 모두 맞았습니다!':'');
+    if(ok===inputs.length)confetti();
+  }
+  $('#fillCheck').addEventListener('click',check);
+  $('#fillHint').addEventListener('click',()=>{inputs.forEach(i=>{i.value=i._ans[0];i.classList.remove('no');i.classList.add('ok')});$('#fillMsg').textContent='정답을 표시했습니다.'});
+  $('#fillReset').addEventListener('click',buildFill);
+  buildFill();
+
+  /* discussion notes */
+  $$('.dis textarea').forEach(t=>{
+    const v=store.get(t.dataset.k);if(v)t.value=v;
+    t.addEventListener('input',()=>store.set(t.dataset.k,t.value));
+  });
+
+  /* todos */
+  const todos=$$('.todo');
+  function updTodo(){
+    const n=todos.filter(t=>t.classList.contains('on')).length;
+    $('#tbar').style.width=(n/todos.length*100)+'%';
+    $('#tmsg').textContent=n===todos.length?'모두 완료! 이번 주 "한 마리 양"을 품으셨습니다. 🐑':`${n} / ${todos.length} 완료`;
+  }
+  todos.forEach(t=>{
+    if(store.get(t.dataset.k)==='1')t.classList.add('on');
+    t.addEventListener('click',()=>{
+      t.classList.toggle('on');store.set(t.dataset.k,t.classList.contains('on')?'1':'0');
+      updTodo();
+      if(todos.every(x=>x.classList.contains('on')))confetti();
+    });
+  });
+  updTodo();
+
+  /* confetti */
+  const cv=$('#confetti'), cx=cv.getContext('2d'); let parts=[], raf=null;
+  function confetti(){
+    if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+    cv.width=innerWidth;cv.height=innerHeight;
+    const cols=['#0071e3','#34c759','#ff9f0a','#af52de','#ff3b30','#5ac8fa'];
+    for(let i=0;i<110;i++)parts.push({x:innerWidth/2,y:innerHeight*.6,vx:(Math.random()-.5)*14,vy:-Math.random()*15-4,s:5+Math.random()*6,c:cols[i%cols.length],r:Math.random()*6,vr:(Math.random()-.5)*.4,l:0});
+    if(!raf)raf=requestAnimationFrame(tick);
+  }
+  function tick(){
+    cx.clearRect(0,0,cv.width,cv.height);
+    parts.forEach(p=>{p.vy+=.35;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.l++;
+      cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.globalAlpha=Math.max(0,1-p.l/110);cx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);cx.restore()});
+    parts=parts.filter(p=>p.l<110&&p.y<cv.height+20);
+    if(parts.length)raf=requestAnimationFrame(tick);else{raf=null;cx.clearRect(0,0,cv.width,cv.height)}
+  }
+})();
+</script>
+</body>
+</html>
